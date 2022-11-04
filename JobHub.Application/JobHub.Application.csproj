@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CQRS\Commands\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Interfaces\IBaseRepoIUOW\" />
+    <Folder Include="Interfaces\ICustomRepo\" />
+  </ItemGroup>
+
+</Project>

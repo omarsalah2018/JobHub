@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHub.Api", "JobHub.Api\JobHub.Api.csproj", "{80DDBB48-255F-42FE-8289-D37A46F7E0CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHub.Api", "JobHub.Api\JobHub.Api.csproj", "{54209ADA-26C2-41BA-83DD-FF85326F93F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHub.Application", "JobHub.Application\JobHub.Application.csproj", "{7CDAE17C-3857-4B19-8306-9A45DFC501ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHub.Domain", "JobHub.Domain\JobHub.Domain.csproj", "{8826FD2A-1456-4C78-8A99-05D8950B90F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobHub.Infrastructure", "JobHub.Infrastructure\JobHub.Infrastructure.csproj", "{07396E61-0E24-4D9D-A47E-04971F6BE419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobHub.Shared", "HobHub.Shared\HobHub.Shared.csproj", "{3A727838-C3E4-4821-9074-E18D24DF366A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{80DDBB48-255F-42FE-8289-D37A46F7E0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80DDBB48-255F-42FE-8289-D37A46F7E0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80DDBB48-255F-42FE-8289-D37A46F7E0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80DDBB48-255F-42FE-8289-D37A46F7E0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54209ADA-26C2-41BA-83DD-FF85326F93F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54209ADA-26C2-41BA-83DD-FF85326F93F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54209ADA-26C2-41BA-83DD-FF85326F93F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54209ADA-26C2-41BA-83DD-FF85326F93F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDAE17C-3857-4B19-8306-9A45DFC501ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDAE17C-3857-4B19-8306-9A45DFC501ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDAE17C-3857-4B19-8306-9A45DFC501ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDAE17C-3857-4B19-8306-9A45DFC501ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8826FD2A-1456-4C78-8A99-05D8950B90F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8826FD2A-1456-4C78-8A99-05D8950B90F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8826FD2A-1456-4C78-8A99-05D8950B90F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8826FD2A-1456-4C78-8A99-05D8950B90F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07396E61-0E24-4D9D-A47E-04971F6BE419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07396E61-0E24-4D9D-A47E-04971F6BE419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07396E61-0E24-4D9D-A47E-04971F6BE419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07396E61-0E24-4D9D-A47E-04971F6BE419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A727838-C3E4-4821-9074-E18D24DF366A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A727838-C3E4-4821-9074-E18D24DF366A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A727838-C3E4-4821-9074-E18D24DF366A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A727838-C3E4-4821-9074-E18D24DF366A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
