@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Commands\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Interfaces\IBaseRepoIUOW\" />
-    <Folder Include="Interfaces\ICustomRepo\" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JobHub.Domain\JobHub.Domain.csproj" />
   </ItemGroup>
 
 </Project>

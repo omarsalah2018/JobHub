@@ -1,9 +1,12 @@
+using HobHub.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace JobHub.Api
 {
@@ -20,6 +23,7 @@ namespace JobHub.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+            DependencyContainer.RegisterServices(services);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -28,8 +32,13 @@ namespace JobHub.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            #region SeriLog 
+            var path = Directory.GetCurrentDirectory();
+            loggerFactory.AddFile($"{path}\\Logs\\Log.txt");
+            #endregion
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
