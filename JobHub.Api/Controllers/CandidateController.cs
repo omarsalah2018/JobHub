@@ -1,5 +1,4 @@
 ﻿using JobHub.Application.CQRS.Commands;
-using JobHub.Application.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,9 +12,7 @@ namespace JobHub.Api.Controllers
     public class CandidateController : ControllerBase
     {
         private readonly IMediator _mediator;
-
         private readonly ILogger<CandidateController> _logger;
-
         public CandidateController(IMediator mediator, ILogger<CandidateController> logger)
         {
             _mediator = mediator;
@@ -24,11 +21,11 @@ namespace JobHub.Api.Controllers
         [HttpPost()]
         public async Task<IActionResult> Save([FromBody] SaveProfileCommand command)
         {
-            CandidateDto result = null;
+            bool result = false;
             try
             {
                 result = _mediator.Send(command).Result;
-                if (result == null)
+                if (result == false)
                     return BadRequest("Some thing went wrong please try again");
             }
             catch (Exception e)

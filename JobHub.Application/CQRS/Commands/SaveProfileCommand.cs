@@ -1,5 +1,4 @@
-﻿using JobHub.Application.Dtos;
-using JobHub.Application.Interfaces.ICustomRepo;
+﻿using JobHub.Application.Interfaces.ICustomRepo;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JobHub.Application.CQRS.Commands
 {
-    public class SaveProfileCommand : IRequest<CandidateDto>
+    public class SaveProfileCommand : IRequest<bool>
     {
         public string Id { get; set; }
         [Required]
@@ -25,28 +24,24 @@ namespace JobHub.Application.CQRS.Commands
         public string Comment { get; set; }
 
     }
-    public class SaveProfileHandler : IRequestHandler<SaveProfileCommand, CandidateDto>
+    public class SaveProfileHandler : IRequestHandler<SaveProfileCommand, bool>
     {
         private readonly ICandidateRepository _candidateRepository;
         public SaveProfileHandler(ICandidateRepository candidateRepository)
         {
             _candidateRepository = candidateRepository;
         }
-
-        public async Task<CandidateDto> Handle(SaveProfileCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(SaveProfileCommand request, CancellationToken cancellationToken)
         {
-
+            bool isSaved;
             var profile = await _candidateRepository.GetCandidateById(request.Id);
             if (profile == null)
-                _candidateRepository.Add(request);
+                isSaved = _candidateRepository.Add(request);
 
             else
-                _candidateRepository.Update(request);
+                isSaved = _candidateRepository.Update(request);
 
-            CandidateDto candidateDto = new CandidateDto();
-
-            return candidateDto;
-
+            return isSaved;
         }
     }
 }

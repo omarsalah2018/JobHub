@@ -27,60 +27,83 @@ namespace JobHub.Infrastructure
                 throw ex;
             }
         }
-        public static bool WriteData(SaveProfileCommand candidate)
+        public static bool WriteRecord(SaveProfileCommand candidate)
         {
-            var configPersons = new CsvConfiguration(CultureInfo.InvariantCulture)
+            try
             {
-                HasHeaderRecord = false
-            };
-            using (var stream = File.Open("CandidateProfile.csv", FileMode.Append))
-            using (var writer = new StreamWriter(stream))
-            using (var csv = new CsvWriter(writer, configPersons))
-            {
+                var configPersons = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = false
+                };
+                using (var stream = File.Open("CandidateProfile.csv", FileMode.Append))
+                using (var writer = new StreamWriter(stream))
+                using (var csv = new CsvWriter(writer, configPersons))
+                {
 
-                csv.WriteRecord(candidate);
+                    csv.WriteRecord(candidate);
+                }
+                return true;
             }
-            return true;
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
         public static bool WriteRecoreds(List<Candidate> candidates)
         {
-            var configPersons = new CsvConfiguration(CultureInfo.InvariantCulture)
+            try
             {
-                HasHeaderRecord = true
-            };
-            using (var stream = File.Open("CandidateProfile.csv", FileMode.OpenOrCreate))
-            using (var writer = new StreamWriter(stream))
-            using (var csv = new CsvWriter(writer, configPersons))
-            {
+                var configPersons = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = true
+                };
+                using (var stream = File.Open("CandidateProfile.csv", FileMode.OpenOrCreate))
+                using (var writer = new StreamWriter(stream))
+                using (var csv = new CsvWriter(writer, configPersons))
+                {
 
-                csv.WriteRecords(candidates);
+                    csv.WriteRecords(candidates);
+                }
+                return true;
             }
-            return true;
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
         public static bool UpdateRow(SaveProfileCommand command)
         {
-            var candidates = CSVHelper.LoadCSVData();
-            var candidate = candidates.Where(i => i.Id == command.Id).SingleOrDefault();
-            candidates.Remove(candidate);
-
-
-            Candidate newRow = new Candidate()
+            try
             {
-                Id = command.Id,
-                CallTimeFrom = command.CallTimeFrom,
-                CallTimeTo = command.CallTimeTo,
-                Comment = command.Comment,
-                Email = command.Email,
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                GitHubProfileURL = command.GitHubProfileURL,
-                LinkedInProfileURL = command.LinkedInProfileURL,
-                PhoneNumber = command.PhoneNumber
-            };
-            candidates.Add(newRow);
+                // Can be used cashing here after reading data from CSV file by any tool like as Redis Cashe
+                var candidates = CSVHelper.LoadCSVData();
+                var candidate = candidates.Where(i => i.Id == command.Id).SingleOrDefault();
+                candidates.Remove(candidate);
 
-            WriteRecoreds(candidates);
-            return true;
+                // Can be used any mapper here like as Mapster 
+                Candidate newRow = new Candidate()
+                {
+                    Id = command.Id,
+                    CallTimeFrom = command.CallTimeFrom,
+                    CallTimeTo = command.CallTimeTo,
+                    Comment = command.Comment,
+                    Email = command.Email,
+                    FirstName = command.FirstName,
+                    LastName = command.LastName,
+                    GitHubProfileURL = command.GitHubProfileURL,
+                    LinkedInProfileURL = command.LinkedInProfileURL,
+                    PhoneNumber = command.PhoneNumber
+                };
+                candidates.Add(newRow);
+
+                return WriteRecoreds(candidates);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }

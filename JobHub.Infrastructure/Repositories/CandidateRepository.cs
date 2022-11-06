@@ -10,7 +10,7 @@ namespace JobHub.Infrastructure.Repositories
     {
         public bool Add(SaveProfileCommand candidate)
         {
-            var added = CSVHelper.WriteData(candidate);
+            var added = CSVHelper.WriteRecord(candidate);
             return added;
 
         }
